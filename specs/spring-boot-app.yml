@@ -5,6 +5,9 @@ metadata:
   namespace: default
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-postgres-sample
   template:
     metadata:
       name: spring-boot-postgres-sample
@@ -13,6 +16,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-postgres-sample
+        image: kumarltd/spring
         env:
           - name: POSTGRES_USER
             valueFrom:
@@ -29,4 +33,3 @@ spec:
               configMapKeyRef:
                 name: hostname-config
                 key: postgres_host
-        image: kumarltd/spring
